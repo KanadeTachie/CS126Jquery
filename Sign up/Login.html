@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Login</title>
+      <link rel="stylesheet" href="login.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+      
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+     <!--!!!!!!!!!!!! Kaning mga css kay gikan sa https://jqueryui.com/datepicker/, ikaw bahala ani change Jeffer. Temp ra ni kay kung wala ning duwa kay transparent ang datepicker-->
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+     <link rel="stylesheet" href="/resources/demos/style.css">
+     <!--!!!!!!!!!!!-->
+     
+   </head>
+   <body>
+      <div class="center">
+         <div class="header">
+            Login
+         </div>
+         <form>
+            <h2>Name</h2>
+            <input type="text" placeholder="First name">
+            <br></br>
+            <input type="text" placeholder="Middle name">
+            <br></br>
+            <input type="text" placeholder="Last name">
+            <br></br>
+            <h2>Gender</h2>
+
+            <fieldset>
+              <legend>Select a gender: </legend>
+              <label for="radio-1">Male</label>
+              <input type="radio" name="radio-1" id="radio-1" value="Male">
+              <label for="radio-2">Female</label>
+              <input type="radio" name="radio-1" id="radio-2" value="Female">
+            </fieldset>
+
+            <h2>Date of Birth</h2>
+            <p>Date: <input type="text" id="datepicker"></p>
+
+            <input type="submit" id="submit-btn" value="Log in">
+            <div id="result"></div>
+            <a href="#">Forgot Password?</a>
+         </form>
+      </div>
+
+      <script>
+      
+      $(document).ready(function(){
+
+      $('input[type="radio"]').checkboxradio();
+      $( "#datepicker" ).datepicker();
+
+      $('#submit-btn').click(function(event) {
+         event.preventDefault();
+         var selectedValue = $('input[name="radio-1"]:checked').val();
+         if (selectedValue) {
+            $('#result').html('You selected: ' + selectedValue);
+         } else {
+            $('#result').html('Please select a gender');
+         }
+         });
+      });
+
+      </script>
+   </body>
+</html>
