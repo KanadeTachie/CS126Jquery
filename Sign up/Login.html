@@ -14,20 +14,20 @@
      <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
      <link rel="stylesheet" href="/resources/demos/style.css">
      <!--!!!!!!!!!!!-->
-     
+
    </head>
    <body>
       <div class="center">
          <div class="header">
-            Login
+            Sign Up
          </div>
          <form>
             <h2>Name</h2>
-            <input type="text" placeholder="First name">
+            <input type="text" placeholder="First name" id="first-name">
             <br></br>
-            <input type="text" placeholder="Middle name">
+            <input type="text" placeholder="Middle name" id="middle-name">
             <br></br>
-            <input type="text" placeholder="Last name">
+            <input type="text" placeholder="Last name" id="last-name">
             <br></br>
             <h2>Gender</h2>
 
@@ -42,9 +42,15 @@
             <h2>Date of Birth</h2>
             <p>Date: <input type="text" id="datepicker"></p>
 
-            <input type="submit" id="submit-btn" value="Log in">
+            <label for="province">Province </label>
+            <input id="province-input">
+            <br></br>
+            <label for="year-level">Year level</label>
+            <input id="year-level" name="value">
+
+            <input type="submit" id="submit-btn" value="Sign Up">
+            <h3>Output:</h3>
             <div id="result"></div>
-            <a href="#">Forgot Password?</a>
          </form>
       </div>
 
@@ -55,14 +61,55 @@
       $('input[type="radio"]').checkboxradio();
       $( "#datepicker" ).datepicker();
 
+      var availableTags = [
+         "Agusan del Norte",
+         "Augsan del Sur",
+         "Bukidnon",
+         "Compostela Valley",
+         "Cotabato",
+         "Davao del Norte",
+         "Davao del Sur",
+         "Davao Occidental",
+         "Davao Oriental",
+         "Lanao del Norte",
+         "Lanao del Sur",
+         "Maguindanao del Norte",
+         "Maguindanao del Sur",
+         "Misamis Occidental",
+         "Misamis Oriental",
+         "Sarangani",
+         "South Cotabato",
+         "Sultan Kudarat",
+         "Surigao del Norte",
+         "Surigao del Sur",
+         "Zamboanga del Norte",
+         "Zamboanga del Sur",
+         "Zamboanga Sibugay"
+    ];
+
+    $("#province-input").autocomplete({
+      source: availableTags
+    });
+
+    var spinner = $("#year-level").spinner();
+
       $('#submit-btn').click(function(event) {
          event.preventDefault();
-         var selectedValue = $('input[name="radio-1"]:checked').val();
-         if (selectedValue) {
-            $('#result').html('You selected: ' + selectedValue);
-         } else {
-            $('#result').html('Please select a gender');
-         }
+         var selectedGender = $('input[name="radio-1"]:checked').val();
+         var firstName = $('#first-name').val();
+         var middleName = $('#middle-name').val();
+         var lastName = $('#last-name').val();
+         var dateOfBirth = $('#datepicker').val();
+         var province = $('#province-input').val();
+         var yearLevel = $('#year-level').val();
+     
+         var resultString = 'Name: ' + firstName + ' ' + middleName + ' ' + lastName + '<br>' +
+                        'Gender: ' + selectedGender + '<br>' +
+                        'Date of Birth: ' + dateOfBirth + '<br>' +
+                        'Province: ' + province + '<br>' +
+                        'Year Level: ' + yearLevel + '<br>';
+     
+         $('#result').html(resultString);
          });
       });
 
